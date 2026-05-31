@@ -1,6 +1,6 @@
 # Maintainer: Xinfoo <13994062125@163.com>
 pkgname=via-proxy
-pkgver=0.1.0
+pkgver=0.2.0
 pkgrel=1
 pkgdesc='Run commands with proxy environment variables from a simple config file'
 arch=('any')
