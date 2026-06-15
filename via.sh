@@ -65,7 +65,7 @@ read_toml_string() {
     ' "$CONFIG_FILE"
   )"
 
-  printf '%s' "$value"
+  printf '%s\n' "$value"
 }
 
 main() {
@@ -81,6 +81,13 @@ main() {
     --config)
       printf '%s\n' "$CONFIG_FILE"
       return 0
+      ;;
+    --)
+      shift
+      if [[ $# -eq 0 ]]; then
+        usage >&2
+        return 2
+      fi
       ;;
     "")
       usage >&2
@@ -100,14 +107,16 @@ main() {
 
   # 只给本次执行的命令临时注入常见代理环境变量，不污染当前 shell。
   # 同时设置大小写版本，兼容更多命令行工具。
-  HTTP_PROXY="$proxy" \
-  HTTPS_PROXY="$proxy" \
-  ALL_PROXY="$proxy" \
-  RSYNC_PROXY="$proxy" \
-  http_proxy="$proxy" \
-  https_proxy="$proxy" \
-  all_proxy="$proxy" \
-  rsync_proxy="$proxy" \
+  # 使用 export 注入当前进程环境，exec 会自动继承所有环境变量，
+  # 包括父 shell 传递的临时变量（如 XXX=YYY via somecommand）。
+  export HTTP_PROXY="$proxy"
+  export HTTPS_PROXY="$proxy"
+  export ALL_PROXY="$proxy"
+  export RSYNC_PROXY="$proxy"
+  export http_proxy="$proxy"
+  export https_proxy="$proxy"
+  export all_proxy="$proxy"
+  export rsync_proxy="$proxy"
   exec "$@"
 }
 
