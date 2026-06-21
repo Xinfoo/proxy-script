@@ -7,7 +7,7 @@ arch=('any')
 license=('MIT')
 depends=('bash' 'gawk')
 source=('via.sh')
-sha256sums=('f3ce40a89bbbfb71066089bbdeafc67276479d3b12190f8385f825d1d9139543')
+sha256sums=('0390f6ef62c26ffca119561ff798d1b62a5e2e46601e43794b25feb95369d05a')
 
 package() {
   install -Dm755 via.sh "$pkgdir/usr/bin/via"
