@@ -7,6 +7,6 @@ pkgbase = via-proxy
 	depends = bash
 	depends = gawk
 	source = via.sh
-	sha256sums = f3ce40a89bbbfb71066089bbdeafc67276479d3b12190f8385f825d1d9139543
+	sha256sums = cf16b2a4523d79306816b1a1e75c435102b0d6a1d5a4595d9ba766626c79e6f0
 
 pkgname = via-proxy

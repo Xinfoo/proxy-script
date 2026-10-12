@@ -117,6 +117,9 @@ main() {
   export https_proxy="$proxy"
   export all_proxy="$proxy"
   export rsync_proxy="$proxy"
+  # 本地地址和私有网段不走代理。
+  export NO_PROXY="localhost,127.0.0.1,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,::1"
+  export no_proxy="$NO_PROXY"
   exec "$@"
 }
 
